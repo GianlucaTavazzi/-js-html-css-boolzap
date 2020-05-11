@@ -98,19 +98,19 @@ body{
 .search{
     background-color: rgb(237, 237, 237);
     padding: 10px;
+    display: flex;
 }
 
 .search .fas{
-    width: 100%;
+    width: 7%;
     font-size: 14px;
-    padding: 5px 15px;
+    padding: 5px;
+    text-align: center;
     background-color: white;
-    border-radius: 60px;
     color: rgba(0, 0, 0, 0.4);
 }
 
 .search input{
-    margin-left: 8px;
     font-size: 14px;
     border: none;
     width: 93%;

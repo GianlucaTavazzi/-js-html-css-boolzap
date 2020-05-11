@@ -28,6 +28,37 @@ function messaggi() {
             clearInterval(clock);
         }
 
-        var nuovo_messaggio = ('.type-messages input').val('')
+        $('.type-messages input').val('');
     }
 }
+
+// $('.search i').click(function () {
+//     var search_value = $('.search input').val();
+//
+//     $('.list-contacts p').each(function(){
+//         var search_contact = $(this).text();
+//     });
+//
+//     var ciao = $('.list-contacts p').find(search_value);
+//
+//
+// })
+
+//quando clicco devo vedere se nell'imput sono presenti dei nomi presenti anche nella lista delle chat
+// $('.search i').click(function () {
+//     var search_value = $('.search input').val();
+//     console.log(search_value);
+//     // var michele = $('.list-contacts .contacts p:first-of-type').text();
+//     // console.log(michele);
+//     // if (search_value == michele) {
+//     //     $('.list-contacts .selected').removeClass('selected')
+//     //     console.log('ciao');
+//     // }
+//     $('.list-contacts .contacts p:first-of-type').each(function(){
+//         var nome = $(this).text()
+//         if (search_value == nome) {
+//             $('.contacts').hide();
+//             $('').show();
+//         }
+//     });
+// })
