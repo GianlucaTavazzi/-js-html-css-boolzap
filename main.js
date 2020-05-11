@@ -21,6 +21,13 @@ $('.list-contacts .contacts').click(function () {
     $('.chat-c-left span').empty();
 
     $('.chat-c-left span').append('<p>' + account_chatlist + '</p><p>Ultimo accesso oggi alle ' + hours +':' + minutes +'</p>');
+
+    //rimuovo la classe current per poi darlo a quello che voglio io
+    $('.current').removeClass('current')
+
+    var position = $(this).index();
+    var current_chat = $('.chat').eq(position);
+    $(current_chat).addClass('current')
 })
 
 //cambio l'icona quando clicco sull'input per scrivere messaggi
@@ -45,12 +52,12 @@ function messaggi() {
         var testo_messaggio = $('.type-messages input').val();
 
         //inserisco il testo in nun nuovo div
-        $('.chat').append('<div class="mymessage"><p>' + testo_messaggio + '</p></div>');
+        $('.current').append('<div class="mymessage"><p>' + testo_messaggio + '</p></div>');
 
         var clock = setInterval(rispostamessaggio, 1000);
 
         function rispostamessaggio() {
-            $('.chat').append('<div class="reply"><p>ok</p></div>');
+            $('.current').append('<div class="reply"><p>ok</p></div>');
             clearInterval(clock);
         }
 
