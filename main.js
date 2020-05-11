@@ -1,3 +1,29 @@
+//selezione il nome presente nella prima chat
+var account_chatlist = $('.list-contacts .selected p:first-of-type').text();
+
+console.log(account_chatlist);
+
+var data = new Date();
+var hours = data.getHours();
+var minutes = data.getMinutes()
+console.log(hours);
+
+//inserisco il nome all'inteno della parte destra dell'header
+$('.chat-c-left span').append('<p>' + account_chatlist + '</p><p>Ultimo accesso oggi alle ' + hours +':' + minutes +'</p>');
+
+//faccio in modo che il nome cambi a seconda della chat su cui clicco
+$('.list-contacts .contacts').click(function () {
+    $('.selected').removeClass('selected');
+
+    $(this).addClass('selected');var account_chatlist = $('.list-contacts .selected p:first-of-type').text();
+    console.log(account_chatlist);
+
+    $('.chat-c-left span').empty();
+
+    $('.chat-c-left span').append('<p>' + account_chatlist + '</p><p>Ultimo accesso oggi alle ' + hours +':' + minutes +'</p>');
+})
+
+//cambio l'icona quando clicco sull'input per scrivere messaggi
 $('.type-messages input').click(function () {
     $('.fa-paper-plane').show();
     $('.fa-microphone').hide();
