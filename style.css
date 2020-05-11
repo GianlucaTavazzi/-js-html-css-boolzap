@@ -165,6 +165,7 @@ body{
     background-color: #fff;
     padding: 5px 10px;
     border-radius: 8px;
+    margin: 5px 0;
 }
 
 .reply{
@@ -174,6 +175,7 @@ body{
     background-color: #dcf8c6;
     border-radius: 8px;
     padding: 5px 10px;
+    margin: 5px 0;
 }
 
 .type-messages{
@@ -190,6 +192,10 @@ body{
     opacity: 0.4;
 }
 
+.type-messages .fas:nth-child(4){
+    display: none;
+}
+
 .type-messages input{
     font-size: 16px;
     border: none;
@@ -200,4 +206,8 @@ body{
 
 .type-messages input:focus{
     outline-style: none;
+}
+
+.template{
+    display: none;
 }
