@@ -15,7 +15,8 @@ $('.chat-c-left span').append('<p>' + account_chatlist + '</p><p>Ultimo accesso 
 $('.list-contacts .contacts').click(function () {
     $('.selected').removeClass('selected');
 
-    $(this).addClass('selected');var account_chatlist = $('.list-contacts .selected p:first-of-type').text();
+    $(this).addClass('selected');
+    var account_chatlist = $('.list-contacts .selected p:first-of-type').text();
     console.log(account_chatlist);
 
     $('.chat-c-left span').empty();
@@ -30,13 +31,28 @@ $('.list-contacts .contacts').click(function () {
     $(current_chat).addClass('current')
 })
 
+
+$('.mymessage .fa-angle-down').each(function(){
+    $(this).click(function () {
+        $('.mymessage .mydropdown').toggle()
+    })
+})
+
+$('.reply .fas').each(function () {
+    $('.reply .fas').click(function(){
+        // $(this).click(function () {
+        $('.reply .dropdown').toggle()
+        // })
+    })
+})
+
 //cambio l'icona quando clicco sull'input per scrivere messaggi
 // $('.type-messages input').click(function () {
 //     $('.fa-paper-plane').show();
 //     $('.fa-microphone').hide();
 // })
 $('.type-messages input').keyup(function() {
-    if ($('.type-messages input').val(     )) {
+    if ($('.type-messages input').val()) {
         $('.fa-paper-plane').show();
         $('.fa-microphone').hide();
     } else if ($('.type-messages input').val('')) {
@@ -61,12 +77,12 @@ function messaggi() {
         var testo_messaggio = $('.type-messages input').val().trim();
 
         //inserisco il testo in nun nuovo div
-        $('.current').append('<div class="mymessage"><p>' + testo_messaggio + '</p></div>');
+        $('.current').append('<div class="mymessage"><span>' + testo_messaggio + '</span><span>' + hours +':' + minutes + '</span><i class="fas fa-angle-down"></i><ul class="mydropdown"><li>Message info</li><li>Delete Message</li></ul></div>');
 
         var clock = setInterval(rispostamessaggio, 1000);
 
         function rispostamessaggio() {
-            $('.current').append('<div class="reply"><p>ok</p></div>');
+            $('.current').append('<div class="reply"><span>ok</span><span>' + hours +':' + minutes + '</span><i class="fas fa-angle-down"></i><ul class="dropdown"><li>Message info</li><li>Delete Message</li></ul></div>');
             clearInterval(clock);
         }
 
@@ -78,20 +94,6 @@ function messaggi() {
         }
     }
 }
-
-// var inserisco;
-// $('.search input').keypress(function(e) {
-//     $('.list-contacts .contacts p:first-of-type').each(function(){
-//         inserisco = $(this).val();
-//         console.log(inserisco);
-//         var nomi = $(this).text();
-//         console.log(nomi);
-//         if (!nomi.includes(inserisco)) {
-//             $('.selcted').removeClass('selected')
-//         }
-//     });
-// });
-
 
 $('.left input').keyup(function(){
     var search_value = $('.search input').val().trim().toLowerCase();
@@ -108,21 +110,6 @@ $('.left input').keyup(function(){
     });
 })
 
-//quando clicco devo vedere se nell'imput sono presenti dei nomi presenti anche nella lista delle chat
-// $('.search i').click(function () {
-//     var search_value = $('.search input').val();
-//     console.log(search_value);
-//     // var michele = $('.list-contacts .contacts p:first-of-type').text();
-//     // console.log(michele);
-//     // if (search_value == michele) {
-//     //     $('.list-contacts .selected').removeClass('selected')
-//     //     console.log('ciao');
-//     // }
-//     $('.list-contacts .contacts p:first-of-type').each(function(){
-//         var nome = $(this).text()
-//         if (search_value == nome) {
-//             $('.contacts').hide();
-//             $('').show();
-//         }
-//     });
-// })
+
+
+//prendo in considerazione tutti i triangolini e faccio in modo che cliccando su ognuno mi esca il dropdown
