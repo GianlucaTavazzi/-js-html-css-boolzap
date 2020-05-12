@@ -1,3 +1,20 @@
+//ricerca all'interno della lista dei contatti
+$('.left input').keyup(function(){
+    var search_value = $('.search input').val().trim().toLowerCase();
+    console.log(search_value);
+
+    $('.list-contacts .contacts p:first-of-type').each(function(){
+        var search_contact = $(this).text().toLowerCase();
+        console.log(search_contact);
+        if (search_contact.includes(search_value)) {
+            $(this).closest('.contacts').show()
+        } else {
+            $(this).closest('.contacts').hide()
+        }
+    });
+})
+
+
 //selezione il nome presente nella prima chat
 var account_chatlist = $('.list-contacts .selected p:first-of-type').text();
 
@@ -8,7 +25,7 @@ var hours = data.getHours();
 var minutes = data.getMinutes()
 console.log(hours);
 
-//inserisco il nome all'inteno della parte destra dell'header
+//inserisco il nome all'interno della parte destra dell'header
 $('.chat-c-left span').append('<p>' + account_chatlist + '</p><p>Ultimo accesso oggi alle ' + hours +':' + minutes +'</p>');
 
 //faccio in modo che il nome cambi a seconda della chat su cui clicco
@@ -32,19 +49,16 @@ $('.list-contacts .contacts').click(function () {
 })
 
 
-$('.mymessage .fa-angle-down').each(function(){
-    $(this).click(function () {
-        $('.mymessage .mydropdown').toggle()
-    })
+//click sul triangolino per far apparire il dropdown
+$('.chat').on("click", '.mymessage .fas', function () {
+    $(this).next('.mydropdown').toggle()
 })
 
-$('.reply .fas').each(function () {
-    $('.reply .fas').click(function(){
-        // $(this).click(function () {
-        $('.reply .dropdown').toggle()
-        // })
-    })
+$('.chat').on("click", '.reply .fas', function(){
+    $(this).next('.dropdown').toggle()
 })
+
+
 
 //cambio l'icona quando clicco sull'input per scrivere messaggi
 // $('.type-messages input').click(function () {
@@ -72,17 +86,31 @@ $('.right input').keypress(function(e) {
     }
 });
 
+
+//quando clicco sull'opzione 'cancella' scrivo un messaggio che dice che il messaggio è stato cancellato
+$('.chat').on("click", '.mymessage .mydropdown li:nth-child(2)', function(){
+    $('.messaggio').text('Questo messaggio è stato cancellato');
+    $('.mydropdown').hide();
+})
+
+$('.chat').on("click", '.reply .dropdown li:nth-child(2)', function(){
+    $('.risposta').text('Questo messaggio è stato cancellato');
+    $('.dropdown').hide();
+})
+
+
+//creo la funzione per l'invio dei messaggi
 function messaggi() {
     if ($('.type-messages input').val()) {
         var testo_messaggio = $('.type-messages input').val().trim();
 
         //inserisco il testo in nun nuovo div
-        $('.current').append('<div class="mymessage"><span>' + testo_messaggio + '</span><span>' + hours +':' + minutes + '</span><i class="fas fa-angle-down"></i><ul class="mydropdown"><li>Message info</li><li>Delete Message</li></ul></div>');
+        $('.current').append('<div class="mymessage"><span class="messaggio">' + testo_messaggio + '</span><span>' + hours +':' + minutes + '</span><i class="fas fa-angle-down"></i><ul class="mydropdown"><li>Message info</li><li>Delete Message</li></ul></div>');
 
         var clock = setInterval(rispostamessaggio, 1000);
 
         function rispostamessaggio() {
-            $('.current').append('<div class="reply"><span>ok</span><span>' + hours +':' + minutes + '</span><i class="fas fa-angle-down"></i><ul class="dropdown"><li>Message info</li><li>Delete Message</li></ul></div>');
+            $('.current').append('<div class="reply"><span class="risposta">ok</span><span>' + hours +':' + minutes + '</span><i class="fas fa-angle-down"></i><ul class="dropdown"><li>Message info</li><li>Delete Message</li></ul></div>');
             clearInterval(clock);
         }
 
@@ -94,22 +122,3 @@ function messaggi() {
         }
     }
 }
-
-$('.left input').keyup(function(){
-    var search_value = $('.search input').val().trim().toLowerCase();
-    console.log(search_value);
-
-    $('.list-contacts .contacts p:first-of-type').each(function(){
-        var search_contact = $(this).text().toLowerCase();
-        console.log(search_contact);
-        if (search_contact.includes(search_value)) {
-            $(this).closest('.contacts').show()
-        } else {
-            $(this).closest('.contacts').hide()
-        }
-    });
-})
-
-
-
-//prendo in considerazione tutti i triangolini e faccio in modo che cliccando su ognuno mi esca il dropdown
