@@ -35,9 +35,14 @@ $('.list-contacts .contacts').click(function () {
 //     $('.fa-paper-plane').show();
 //     $('.fa-microphone').hide();
 // })
-$('.type-messages input').keypress(function() {
-    $('.fa-paper-plane').show();
-    $('.fa-microphone').hide();
+$('.type-messages input').keyup(function() {
+    if ($('.type-messages input').val(     )) {
+        $('.fa-paper-plane').show();
+        $('.fa-microphone').hide();
+    } else if ($('.type-messages input').val('')) {
+        $('.fa-paper-plane').hide();
+        $('.fa-microphone').show();
+    }
 })
 
 //quando clicco sull'icona il messaggio che io ho scritto nell'imput viene visualizzato nella pagina come un nuovo elemento
@@ -53,7 +58,7 @@ $('.right input').keypress(function(e) {
 
 function messaggi() {
     if ($('.type-messages input').val()) {
-        var testo_messaggio = $('.type-messages input').val();
+        var testo_messaggio = $('.type-messages input').val().trim();
 
         //inserisco il testo in nun nuovo div
         $('.current').append('<div class="mymessage"><p>' + testo_messaggio + '</p></div>');
@@ -88,17 +93,20 @@ function messaggi() {
 // });
 
 
-// $('.search i').click(function () {
-//     var search_value = $('.search input').val();
-//
-//     $('.list-contacts p').each(function(){
-//         var search_contact = $(this).text();
-//     });
-//
-//     var ciao = $('.list-contacts p').find(search_value);
-//
-//
-// })
+$('.left input').keyup(function(){
+    var search_value = $('.search input').val().trim().toLowerCase();
+    console.log(search_value);
+
+    $('.list-contacts .contacts p:first-of-type').each(function(){
+        var search_contact = $(this).text().toLowerCase();
+        console.log(search_contact);
+        if (search_contact.includes(search_value)) {
+            $(this).closest('.contacts').show()
+        } else {
+            $(this).closest('.contacts').hide()
+        }
+    });
+})
 
 //quando clicco devo vedere se nell'imput sono presenti dei nomi presenti anche nella lista delle chat
 // $('.search i').click(function () {
