@@ -31,7 +31,11 @@ $('.list-contacts .contacts').click(function () {
 })
 
 //cambio l'icona quando clicco sull'input per scrivere messaggi
-$('.type-messages input').click(function () {
+// $('.type-messages input').click(function () {
+//     $('.fa-paper-plane').show();
+//     $('.fa-microphone').hide();
+// })
+$('.type-messages input').keypress(function() {
     $('.fa-paper-plane').show();
     $('.fa-microphone').hide();
 })
@@ -41,7 +45,7 @@ $('.type-messages .fas:nth-child(4)').click(function () {
     messaggi()
 })
 
-$(document).keypress(function(e) {
+$('.right input').keypress(function(e) {
     if(e.which == 13) {
         messaggi()
     }
@@ -62,8 +66,27 @@ function messaggi() {
         }
 
         $('.type-messages input').val('');
+
+        if ($('.type-messages input').val('')) {
+            $('.fa-paper-plane').hide();
+            $('.fa-microphone').show();
+        }
     }
 }
+
+// var inserisco;
+// $('.search input').keypress(function(e) {
+//     $('.list-contacts .contacts p:first-of-type').each(function(){
+//         inserisco = $(this).val();
+//         console.log(inserisco);
+//         var nomi = $(this).text();
+//         console.log(nomi);
+//         if (!nomi.includes(inserisco)) {
+//             $('.selcted').removeClass('selected')
+//         }
+//     });
+// });
+
 
 // $('.search i').click(function () {
 //     var search_value = $('.search input').val();
