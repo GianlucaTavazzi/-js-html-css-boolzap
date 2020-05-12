@@ -89,12 +89,12 @@ $('.right input').keypress(function(e) {
 
 //quando clicco sull'opzione 'cancella' scrivo un messaggio che dice che il messaggio è stato cancellato
 $('.chat').on("click", '.mymessage .mydropdown li:nth-child(2)', function(){
-    $('.messaggio').text('Questo messaggio è stato cancellato');
+    $(this).parent().siblings('.messaggio').text('Questo messaggio è stato cancellato');
     $('.mydropdown').hide();
 })
 
 $('.chat').on("click", '.reply .dropdown li:nth-child(2)', function(){
-    $('.risposta').text('Questo messaggio è stato cancellato');
+    $(this).parent().siblings('.risposta').text('Questo messaggio è stato cancellato');
     $('.dropdown').hide();
 })
 
