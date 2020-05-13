@@ -2,16 +2,21 @@
 $('.left input').keyup(function(){
     var search_value = $('.search input').val().trim().toLowerCase();
     console.log(search_value);
-
-    $('.list-contacts .contacts p:first-of-type').each(function(){
-        var search_contact = $(this).text().toLowerCase();
-        console.log(search_contact);
-        if (search_contact.includes(search_value)) {
-            $(this).closest('.contacts').show()
-        } else {
-            $(this).closest('.contacts').hide()
-        }
-    });
+    if ($('.search input').val()) {
+        $('.list-contacts .contacts p:first-of-type').each(function(){
+            var search_contact = $(this).html().toLowerCase();
+            console.log(search_contact);
+            if (search_contact.includes(search_value)) {
+                $(this).closest('.contacts').show()
+                $(this).addClass('selected');
+            } else {
+                $(this).closest('.contacts').hide()
+            }
+        });
+    } else {
+        $('.list-contacts .contacts p:first-of-type').closest('.contacts').show();
+        $('.list-contacts .contacts p:first-of-type').removeClass('selected');
+    }
 })
 
 
@@ -43,9 +48,14 @@ $('.list-contacts .contacts').click(function () {
     //rimuovo la classe current per poi darlo a quello che voglio io
     $('.current').removeClass('current')
 
-    var position = $(this).index();
-    var current_chat = $('.chat').eq(position);
-    $(current_chat).addClass('current')
+    // var position = $(this).index();
+    // var current_chat = $('.chat').eq(position);
+    // $(current_chat).addClass('current');
+    // var account_data = $('.selected').data('');
+    // var ciao = account_data.toString();
+    // console.log(ciao);
+    var current_chat = $('.chat[data-nome="' + account_chatlist +'"]');
+    $(current_chat).addClass('current');
 })
 
 
