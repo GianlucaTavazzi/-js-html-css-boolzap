@@ -7,6 +7,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
         <script src="https://kit.fontawesome.com/6369196dab.js" crossorigin="anonymous"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
     </head>
     <body>
         <div class="conteiner">
@@ -338,6 +339,17 @@
                 </ul>
             </div>
         </div>
+        <script id="template" type="text/x-handlebars-template">
+            <div class="{{primaclasse}}">
+                <span class="{{secondaclasse}}">{{testomessaggio}}</span>
+                <span>{{orario}}</span>
+                <i class="fas fa-angle-down"></i>
+                <ul class="{{terzaclasse}}">
+                    <li>Message info</li>
+                    <li>Delete Message</li>
+                </ul>
+            </div>
+        </script>
         <script src="main.js" charset="utf-8"></script>
     </body>
 </html>

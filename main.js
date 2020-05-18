@@ -128,24 +128,50 @@ function messaggi() {
 
         //inserisco il testo in nun nuovo div
         // $('.current').append('<div class="mymessage"><span class="messaggio">' + testo_messaggio + '</span><span>' + date() + '</span><i class="fas fa-angle-down"></i><ul class="mydropdown"><li>Message info</li><li>Delete Message</li></ul></div>');
-        var clono_m = $('.template').children().clone();
-        clono_m.addClass('mymessage');
-        clono_m.find('span:first-of-type').addClass('messaggio').text(testo_messaggio);
-        clono_m.find('span:nth-child(2)').text(date());
-        clono_m.find('ul').addClass('mydropdown');
-        $('.current').append(clono_m);
+        // var clono_m = $('.template').children().clone();
+        // clono_m.addClass('mymessage');
+        // clono_m.find('span:first-of-type').addClass('messaggio').text(testo_messaggio);
+        // clono_m.find('span:nth-child(2)').text(date());
+        // clono_m.find('ul').addClass('mydropdown');
+        // $('.current').append(clono_m);
+        var template_html = $('#template').html();
+        var template_function = Handlebars.compile(template_html);
+
+        var miomessaggio = {
+            'primaclasse' : 'mymessage',
+            'secondaclasse' : 'messaggio',
+            'testomessaggio' : testo_messaggio,
+            'orario' : date(),
+            'terzaclasse' : 'mydropdown',
+        }
+
+        var messaggio_finale = template_function(miomessaggio);
+        $('.current').append(messaggio_finale);
 
         var clock = setInterval(rispostamessaggio, 1000);
 
         function rispostamessaggio() {
-            var clono_risposta = $('.template').children().clone();
-            clono_risposta.addClass('reply');
-            clono_risposta.find('span:first-of-type').addClass('risposta').text('ok');
-            clono_risposta.find('span:nth-child(2)').text(date());
-            clono_risposta.find('ul').addClass('dropdown')
-            $('.current').append(clono_risposta);
+            // var clono_risposta = $('.template').children().clone();
+            // clono_risposta.addClass('reply');
+            // clono_risposta.find('span:first-of-type').addClass('risposta').text('ok');
+            // clono_risposta.find('span:nth-child(2)').text(date());
+            // clono_risposta.find('ul').addClass('dropdown')
+            // $('.current').append(clono_risposta);
 
             // $('.current').append('<div class="reply"><span class="risposta">ok</span><span>' + date() + '</span><i class="fas fa-angle-down"></i><ul class="dropdown"><li>Message info</li><li>Delete Message</li></ul></div>');
+
+            var rispostahandle = {
+                'primaclasse' : 'reply',
+                'secondaclasse' : 'risposta',
+                'testomessaggio' : 'ok',
+                'orario' : date(),
+                'terzaclasse' : 'dropdown',
+            }
+
+            var risposta_finale = template_function(rispostahandle);
+            $('.current').append(risposta_finale);
+
+
             clearInterval(clock);
             aggiornamento_messaggi()
             autoScroll();
@@ -167,9 +193,9 @@ function messaggi() {
 //creo una funzione per spostare la chat
 function move_chat() {
     //prendo il contatto con la classe selcted, lo clono e poi lo rimuovo, poi faccio prepend
-    var clono = $('.list-contacts .selected').clone();
-    var rimuovo = $('.list-contacts .selected').remove();
-    $('.list-contacts').prepend(clono);
+    // var clono = $('.list-contacts .selected').clone();
+    // var rimuovo = $('.list-contacts .selected').remove();
+    $('.list-contacts .selected').prependTo('.list-contacts');
     //porto la scrollbar in cima
     if ($(".list-contacts").scrollTop() != 0) {
         $(".list-contacts").scrollTop(0);
